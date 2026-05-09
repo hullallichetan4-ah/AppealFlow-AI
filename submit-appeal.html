@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Appeal - r/technology</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <style>
+        .submit-body { background: var(--bg-main); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+        .submit-container { width: 100%; max-width: 600px; }
+        .header-banner { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; margin-bottom: 24px; text-align: center; }
+        .sub-icon { width: 48px; height: 48px; background: var(--primary); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; margin-bottom: 12px; }
+        .ban-reason { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: var(--radius-sm); padding: 16px; margin-top: 16px; text-align: left; }
+        .ban-reason h4 { color: var(--danger); margin-bottom: 8px; font-size: 14px; }
+        .ban-reason p { font-size: 14px; color: var(--text-secondary); }
+        .step-indicator { display: flex; align-items: center; margin-bottom: 24px; }
+        .step { flex: 1; height: 4px; background: var(--border); border-radius: 2px; margin: 0 4px; transition: background 0.3s; }
+        .step.active { background: var(--primary); }
+    </style>
+</head>
+<body class="submit-body">
+    <div class="submit-container">
+        <div class="header-banner">
+            <div class="sub-icon">T</div>
+            <h2>Appeal Ban: r/technology</h2>
+            <p class="text-secondary mt-1">You are currently permanently banned from participating in r/technology.</p>
+            
+            <div class="ban-reason">
+                <h4>Reason for ban: Rule 3 Violation</h4>
+                <p>"No low-quality sources or blog spam. All news must be from reputable sources."</p>
+                <p class="mt-1" style="font-size: 12px;">Banned on Oct 22, 2023 by AutoModerator</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="step-indicator">
+                <div class="step active"></div>
+                <div class="step active"></div>
+                <div class="step active"></div>
+            </div>
+
+            <form id="appeal-form" onsubmit="event.preventDefault(); submitAppeal();">
+                <div class="form-group">
+                    <label class="form-label">Why do you think you were banned?</label>
+                    <textarea class="form-control" required placeholder="Explain your understanding of the ban..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Do you understand Rule 3?</label>
+                    <div style="display: flex; gap: 16px; margin-top: 8px;">
+                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                            <input type="radio" name="understand" required> Yes, I have read it now
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                            <input type="radio" name="understand"> No, I need clarification
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Why should we unban you?</label>
+                    <textarea class="form-control" required placeholder="Provide context or explanation..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Will this happen again?</label>
+                    <input type="text" class="form-control" required placeholder="How will you ensure compliance in the future?">
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 32px;">
+                    <a href="#" class="text-secondary" style="font-size: 14px;">Cancel</a>
+                    <button type="submit" class="btn btn-primary" id="submit-btn">Submit Appeal</button>
+                </div>
+            </form>
+            
+            <div id="success-state" class="hidden" style="text-align: center; padding: 40px 0;">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" style="margin-bottom: 24px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                <h3 style="margin-bottom: 12px;">Appeal Submitted</h3>
+                <p class="text-secondary" style="margin-bottom: 24px;">Your appeal has been securely transmitted to the moderator team. You will receive a response in your inbox.</p>
+                <button class="btn btn-outline" onclick="window.location.reload()">Return to Reddit</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function submitAppeal() {
+            const btn = document.getElementById('submit-btn');
+            const form = document.getElementById('appeal-form');
+            const success = document.getElementById('success-state');
+            
+            btn.innerHTML = '<div class="loading-spinner" style="width: 16px; height: 16px; border-width: 2px;"></div>';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                form.classList.add('hidden');
+                success.classList.remove('hidden');
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

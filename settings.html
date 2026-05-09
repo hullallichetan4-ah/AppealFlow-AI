@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - AppealFlow AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <style>
+        .settings-layout { display: grid; grid-template-columns: 240px 1fr; gap: 32px; }
+        .settings-nav { display: flex; flex-direction: column; gap: 8px; }
+        .settings-nav-item { padding: 10px 16px; border-radius: var(--radius-sm); color: var(--text-secondary); cursor: pointer; transition: all var(--transition); font-size: 14px; font-weight: 500; }
+        .settings-nav-item:hover { background: var(--bg-card); color: var(--text-main); }
+        .settings-nav-item.active { background: var(--primary); color: white; }
+        .setting-row { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--border); }
+        .setting-row:last-child { border-bottom: none; }
+        .setting-info h4 { font-size: 15px; margin-bottom: 4px; }
+        .setting-info p { font-size: 13px; color: var(--text-secondary); max-width: 400px; }
+        
+        /* Toggle Switch */
+        .switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--border); transition: .4s; border-radius: 24px; }
+        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--primary); }
+        input:checked + .slider:before { transform: translateX(20px); }
+        
+        /* Range Slider */
+        .range-slider { -webkit-appearance: none; width: 200px; height: 6px; border-radius: 3px; background: var(--border); outline: none; }
+        .range-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--primary); cursor: pointer; }
+        
+        @media (max-width: 768px) { .settings-layout { grid-template-columns: 1fr; } .settings-nav { flex-direction: row; overflow-x: auto; padding-bottom: 12px; } .settings-nav-item { white-space: nowrap; } .setting-row { flex-direction: column; align-items: flex-start; gap: 16px; } }
+    </style>
+</head>
+<body class="app-body">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <span class="logo-icon"></span>
+                <span class="logo-text">AppealFlow</span>
+            </div>
+            <button class="btn-icon mobile-menu-close" id="close-sidebar">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        <nav class="sidebar-nav mt-4">
+            <div class="nav-section">MENU</div>
+            <a href="dashboard.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                Dashboard
+            </a>
+            <a href="analytics.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"></path></svg>
+                Analytics
+            </a>
+            <a href="settings.html" class="nav-item active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                Settings
+            </a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="btn-icon mobile-menu-toggle" id="open-sidebar">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </button>
+                <h3 class="font-medium">Settings</h3>
+            </div>
+            <div class="topbar-right">
+                <button class="btn btn-primary" id="save-settings">Save Changes</button>
+            </div>
+        </header>
+
+        <div class="content-container">
+            <div class="settings-layout">
+                <div class="settings-nav">
+                    <div class="settings-nav-item active">AI Configuration</div>
+                    <div class="settings-nav-item">Appeal Form</div>
+                    <div class="settings-nav-item">Notifications</div>
+                    <div class="settings-nav-item">Team Members</div>
+                </div>
+                
+                <div class="settings-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">AI Auto-Moderation Engine</h3>
+                        </div>
+                        
+                        <div class="setting-row">
+                            <div class="setting-info">
+                                <h4>Auto-Approve High Confidence</h4>
+                                <p>Automatically approve and unban users when AI confidence score is exceptionally high.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="setting-row">
+                            <div class="setting-info">
+                                <h4>Toxicity Threshold</h4>
+                                <p>Appeals containing language above this toxicity score will be auto-rejected.</p>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <input type="range" min="1" max="100" value="85" class="range-slider" id="tox-slider">
+                                <span class="font-medium" id="tox-value">85%</span>
+                            </div>
+                        </div>
+
+                        <div class="setting-row">
+                            <div class="setting-info">
+                                <h4>Identify Ban Evasion</h4>
+                                <p>Cross-reference IPs and browser fingerprints with known banned users.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="setting-row">
+                            <div class="setting-info">
+                                <h4>Default Auto-Response</h4>
+                                <p>Base template used for AI-generated response drafts.</p>
+                            </div>
+                            <textarea class="form-control mt-4" rows="6">Hi {{username}},
+
+Regarding your ban for {{rule_violated}}:
+{{ai_explanation}}
+
+Best,
+The Moderation Team</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="toast-container" id="toast-container"></div>
+    <script src="js/app.js"></script>
+    <script>
+        document.getElementById('save-settings').addEventListener('click', () => {
+            const btn = document.getElementById('save-settings');
+            btn.innerHTML = '<div class="loading-spinner" style="width: 16px; height: 16px; border-width: 2px;"></div>';
+            setTimeout(() => {
+                btn.innerHTML = 'Save Changes';
+                ToastManager.show('Settings Saved', 'Your configuration has been updated successfully.');
+            }, 800);
+        });
+
+        const slider = document.getElementById('tox-slider');
+        const output = document.getElementById('tox-value');
+        slider.oninput = function() {
+            output.innerHTML = this.value + '%';
+        }
+    </script>
+</body>
+</html>

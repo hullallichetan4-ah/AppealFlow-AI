@@ -1,0 +1,19 @@
+/* css/responsive.css */
+@media (max-width: 1024px) {
+    .dashboard-layout { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+    .sidebar { position: fixed; left: 0; top: 0; bottom: 0; transform: translateX(-100%); width: 260px; }
+    .sidebar.open { transform: translateX(0); box-shadow: var(--shadow-md); }
+    .mobile-menu-toggle { display: block; }
+    .mobile-menu-close { display: block; }
+    .search-bar { display: none; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 480px) {
+    .stats-grid { grid-template-columns: 1fr; }
+    .card-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .queue-filters { width: 100%; overflow-x: auto; }
+}

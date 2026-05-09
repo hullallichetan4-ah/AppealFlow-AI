@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - AppealFlow AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <style>
+        .analytics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+        .chart-placeholder { height: 250px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); border: 1px dashed var(--border); border-radius: var(--radius-sm); margin-top: 16px; background: rgba(255,255,255,0.02); }
+        @media (max-width: 768px) { .analytics-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body class="app-body">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <span class="logo-icon"></span>
+                <span class="logo-text">AppealFlow</span>
+            </div>
+            <button class="btn-icon mobile-menu-close" id="close-sidebar">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        <nav class="sidebar-nav mt-4">
+            <div class="nav-section">MENU</div>
+            <a href="dashboard.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                Dashboard
+            </a>
+            <a href="analytics.html" class="nav-item active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"></path></svg>
+                Analytics
+            </a>
+            <a href="settings.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                Settings
+            </a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="btn-icon mobile-menu-toggle" id="open-sidebar">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </button>
+                <h3 class="font-medium">Analytics & Insights</h3>
+            </div>
+            <div class="topbar-right">
+                <select class="form-control" style="width: auto;">
+                    <option>Last 30 Days</option>
+                    <option>Last 90 Days</option>
+                    <option>This Year</option>
+                </select>
+            </div>
+        </header>
+
+        <div class="content-container">
+            <div class="analytics-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Appeal Volume Trend</h3>
+                    </div>
+                    <div class="chart-placeholder">
+                        <svg width="100%" height="100%" viewBox="0 0 400 200" preserveAspectRatio="none">
+                            <polyline fill="none" stroke="var(--primary)" stroke-width="3" points="0,150 50,120 100,140 150,80 200,90 250,50 300,100 350,30 400,60" />
+                            <polyline fill="rgba(255,69,0,0.1)" stroke="none" points="0,200 0,150 50,120 100,140 150,80 200,90 250,50 300,100 350,30 400,60 400,200" />
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Approval vs Rejection Rate</h3>
+                    </div>
+                    <div class="chart-placeholder">
+                        <div style="position: relative; width: 150px; height: 150px; border-radius: 50%; background: conic-gradient(var(--success) 0% 64%, var(--danger) 64% 100%); display: flex; align-items: center; justify-content: center;">
+                            <div style="width: 100px; height: 100px; background: var(--bg-card); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                                <span style="font-size: 24px; font-weight: bold; color: var(--success);">64%</span>
+                                <span style="font-size: 10px; color: var(--text-secondary);">Approved</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Top Ban Reasons Appealed</h3>
+                    </div>
+                    <div class="table-responsive mt-4">
+                        <table class="table">
+                            <thead><tr><th>Rule</th><th>Appeals</th><th>Approval %</th></tr></thead>
+                            <tbody>
+                                <tr><td>Rule 3 (Spam)</td><td>452</td><td><span class="text-danger">22%</span></td></tr>
+                                <tr><td>Rule 1 (Civility)</td><td>310</td><td><span class="text-danger">15%</span></td></tr>
+                                <tr><td>Rule 5 (Off-topic)</td><td>185</td><td><span class="text-success">78%</span></td></tr>
+                                <tr><td>AutoMod Filter</td><td>142</td><td><span class="text-success">92%</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Moderator Performance</h3>
+                    </div>
+                    <div class="table-responsive mt-4">
+                        <table class="table">
+                            <thead><tr><th>Moderator</th><th>Appeals Handled</th><th>Avg Time</th></tr></thead>
+                            <tbody>
+                                <tr><td>AutoModerator (AI)</td><td>1,204</td><td>0.1s</td></tr>
+                                <tr><td>ModMaster</td><td>342</td><td>4.2h</td></tr>
+                                <tr><td>TechMod_99</td><td>128</td><td>12.5h</td></tr>
+                                <tr><td>Justice_Bot</td><td>89</td><td>1.2s</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="js/app.js"></script>
+</body>
+</html>

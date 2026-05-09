@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - AppealFlow AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="login-body">
+    <div class="login-container glass-panel">
+        <div class="login-header">
+            <div class="logo">
+                <span class="logo-icon"></span> AppealFlow AI
+            </div>
+            <h1>Welcome Back</h1>
+            <p>AI-powered moderation and appeal management.</p>
+        </div>
+        
+        <div class="login-actions">
+            <button id="login-btn" class="btn btn-primary btn-block btn-lg">
+                <svg class="reddit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M324.6 255.4c-15.1 0-27.5 12.3-27.5 27.4 0 15 12.4 27.3 27.5 27.3 15 0 27.4-12.3 27.4-27.3.1-15.1-12.3-27.4-27.4-27.4zm-136.9 0c-15.1 0-27.4 12.3-27.4 27.4 0 15 12.3 27.3 27.4 27.3 15.1 0 27.5-12.3 27.5-27.3 0-15.1-12.4-27.4-27.5-27.4zm233-85.9c-23.2 0-43.5 13.9-53 34.6-32.9-23.7-77.9-38.9-127.7-41.2l22.4-105.1 72.8 15.4c.5 19.3 16.3 34.8 35.8 34.8 19.7 0 35.7-16 35.7-35.7 0-19.8-16-35.8-35.7-35.8-15.4 0-28.5 9.8-33.6 23.4l-81.2-17.1c-2.4-.5-4.8 1-5.5 3.3L225.5 159c-50.6 1.8-96.5 16.9-129.8 41-9.5-20.9-30-34.9-53.4-34.9-32.6 0-59.1 26.5-59.1 59.1 0 25.1 15.7 46.5 37.6 54.8-1.5 7.4-2.2 15.1-2.2 23 0 71.9 83.2 130.4 185.7 130.4s185.7-58.5 185.7-130.4c0-7.8-.8-15.5-2.2-23 21.9-8.3 37.6-29.6 37.6-54.8.1-32.6-26.4-59.1-59-59.1zm-164.5 181.7c-38.2 0-66.5-16.7-68.5-18-2.6-1.7-4.1-4.6-4-7.7.1-3.1 1.8-5.9 4.6-7.4 2.8-1.5 6.2-1.3 8.8.4 1.2.8 26.5 15 59.2 15s58-14.2 59.2-15c2.6-1.7 6.1-1.9 8.8-.4 2.8 1.5 4.5 4.3 4.6 7.4.1 3.1-1.4 6-4 7.7-2.1 1.3-30.4 18-68.7 18z"/></svg>
+                Continue with Reddit
+            </button>
+            <div id="login-loading" class="loading-spinner hidden"></div>
+        </div>
+        
+        <div class="login-footer">
+            <p>By logging in, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+        </div>
+    </div>
+
+    <script src="js/mock-data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
